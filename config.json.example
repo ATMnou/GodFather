@@ -1,0 +1,10 @@
+{
+  "testServer": "",
+  "clientId": "",
+  "devs": [""],
+  "PORT": 3001,
+  "token": "",
+  "KEY": "",
+  "CLOUDKEY": "",
+  "SECRET_CODE": ""
+}
