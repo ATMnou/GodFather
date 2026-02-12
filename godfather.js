@@ -417,18 +417,13 @@ client.on("messageCreate", async (message) => {
 
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isButton()) {
-    reasoning_log.forEach((item) => {
-      let find = false;
-      if (item.id === interaction.customId) {
-        const embed = new EmbedBuilder().setTitle("추론 과정").setDescription(item.text).setColor("#00FF00");
-        interaction.reply({ embeds: [embed], ephemeral: true });
-        find = true;
-        return;
-      }
-      if (!find) {
-        interaction.reply({ content: "추론 과정을 찾을 수 없습니다. (봇이 재시작되었을 수 있습니다.)", ephemeral: true });
-      }
-    });
+    const item = reasoning_log.find((item) => item.id === interaction.customId);
+    if (item) {
+      const embed = new EmbedBuilder().setTitle("추론 과정").setDescription(item.text).setColor("#00FF00");
+      interaction.reply({ embeds: [embed], ephemeral: true });
+    } else {
+      interaction.reply({ content: "추론 과정을 찾을 수 없습니다. (봇이 재시작되었을 수 있습니다.)", ephemeral: true });
+    }
   }
 });
 
